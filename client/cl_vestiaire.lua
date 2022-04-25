@@ -104,7 +104,7 @@ Citizen.CreateThread(function()
                 end
                 if distancevestiaire <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au action ~g~patron", 1) 
+                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au ~g~vestiaire", 1) 
                     if IsControlJustPressed(1, 51) then
                         RageUI.Visible(MenuVestiaire, not RageUI.Visible(MenuVestiaire))
                     end
