@@ -26,6 +26,7 @@ function RageUI.PoolMenus:GarageHeliAmbulance()
 					SetVehicleNumberPlateText(veh, newPlate)
 					SetEntityAsMissionEntity(veh, 1, 1)
 					TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
+					RageUI.CloseAll()
 				end
 			end)
 		end
