@@ -196,7 +196,7 @@ Citizen.CreateThread(function()
                 end
                 if distanceboss <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au action ~g~patron", 1) 
+                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au ~g~actions patron", 1) 
                     if IsControlJustPressed(1, 51) then
                         RefreshambulanceMoney()
                         RageUI.Visible(MenuBoss, not RageUI.Visible(MenuBoss))
