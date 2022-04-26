@@ -12,6 +12,10 @@ GarageHeli = {
 }
 
 local MenuGarageHeli = RageUI.CreateMenu("GarageHeli", "GarageHeli Ambulance");
+local open = false
+function MenuGarageHeli.Closed()
+	open = false
+end
 
 function RageUI.PoolMenus:GarageHeliAmbulance()
 	MenuGarageHeli:IsVisible(function(Items)
@@ -81,8 +85,11 @@ Citizen.CreateThread(function()
 						DrawMarker(6, v.x, v.y, v.z-1, 0.0, 0.0, 9.0, 0.0, 0.0, 0.0, 1.5, 1.0, 1.5, 3, 252, 65, 150, false, false, 2, false, false, false, false)
 						if dist <= 1.0 then
 							wait = 0
-							ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour ~g~sortir un helicopter ~s~!")
+							if not open then
+								ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour ~g~sortir un helicopter ~s~!")
+							end
 							if IsControlJustPressed(1,51) then
+								open = true
 								RageUI.Visible(MenuGarageHeli, not RageUI.Visible(MenuGarageHeli))
 							end
 						end

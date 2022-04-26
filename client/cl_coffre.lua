@@ -31,21 +31,25 @@ end
 local MenuCoffre = RageUI.CreateMenu("Coffre", 'menu coffre');
 local deposer = RageUI.CreateSubMenu(MenuCoffre, "Déposer", 'menu coffre')
 local retirer = RageUI.CreateSubMenu(MenuCoffre, "Retirer", 'menu coffre')
+local open = false
+function MenuCoffre.Closed()
+	open = false
+end
 
-    function RageUI.PoolMenus:Coffre()
-        MenuCoffre:IsVisible(function(Items)
-            Items:AddButton("Déposer", nil, {RightLabel = ">", IsDisabled = false }, function(onSelected)
-                if (onSelected) then
-                    getInventory()
-                end
-            end, deposer)
-            Items:AddButton("Retirer", nil, {RightLabel = ">", IsDisabled = false }, function(onSelected)
-                if (onSelected) then
-                    getStock()
-                end
-            end, retirer)
-        end, function(Panels)
-        end)
+function RageUI.PoolMenus:Coffre()
+    MenuCoffre:IsVisible(function(Items)
+        Items:AddButton("Déposer", nil, {RightLabel = ">", IsDisabled = false }, function(onSelected)
+            if (onSelected) then
+                getInventory()
+            end
+        end, deposer)
+        Items:AddButton("Retirer", nil, {RightLabel = ">", IsDisabled = false }, function(onSelected)
+            if (onSelected) then
+                getStock()
+            end
+        end, retirer)
+    end, function(Panels)
+    end)
 
     deposer:IsVisible(function(Items)
         for k,v in pairs(all_items) do
@@ -93,8 +97,11 @@ Citizen.CreateThread(function()
                 end
                 if distancevestiaire <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au ~g~coffre", 1) 
+                    if not open then
+                        ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au ~g~coffre", 1)
+                    end
                     if IsControlJustPressed(1, 51) then
+                        open = true
                         RageUI.Visible(MenuCoffre, not RageUI.Visible(MenuCoffre))
                     end
                 end

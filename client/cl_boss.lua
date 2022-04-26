@@ -65,8 +65,11 @@ end
 local MenuBoss = RageUI.CreateMenu("Boss", 'menu boss');
 local listeemployes = RageUI.CreateSubMenu(MenuBoss, "Liste employés", 'menu boss')
 local gestionemployes = RageUI.CreateSubMenu(listeemployes, "Gestion employés", 'menu boss')
-
 local gestionsalaires = RageUI.CreateSubMenu(MenuBoss, "Gestion salaires", 'menu boss')
+local open = false
+function MenuBoss.Closed()
+	open = false
+end
 
 function RageUI.PoolMenus:Boss()
     MenuBoss:IsVisible(function(Items)
@@ -196,8 +199,11 @@ Citizen.CreateThread(function()
                 end
                 if distanceboss <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au ~g~actions patron", 1) 
+                    if not open then
+                        ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder au ~g~actions patron", 1)
+                    end
                     if IsControlJustPressed(1, 51) then
+                        open = true
                         RefreshambulanceMoney()
                         RageUI.Visible(MenuBoss, not RageUI.Visible(MenuBoss))
                     end

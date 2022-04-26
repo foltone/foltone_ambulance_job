@@ -8,6 +8,10 @@ Citizen.CreateThread(function()
 end)
 
 local MenuPharmacie = RageUI.CreateMenu("Pharmacie", 'menu pharamcie');
+local open = false
+function MenuPharmacie.Closed()
+	open = false
+end
 
 function RageUI.PoolMenus:Pharmacie()
     MenuPharmacie:IsVisible(function(Items)
@@ -40,8 +44,11 @@ Citizen.CreateThread(function()
                 end
                 if distancevestiaire <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder a la ~g~pharamcie", 1) 
+                    if not open then
+                        ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder a la ~g~pharamcie", 1)
+                    end
                     if IsControlJustPressed(1, 51) then
+                        open = true
                         RageUI.Visible(MenuPharmacie, not RageUI.Visible(MenuPharmacie))
                     end
                 end

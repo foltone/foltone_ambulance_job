@@ -8,6 +8,10 @@ Citizen.CreateThread(function()
 end)
 
 local MenuAscenseur = RageUI.CreateMenu("Ascenseur", 'menu ascenseur');
+local open = false
+function MenuAscenseur.Closed()
+	open = false
+end
 
 function RageUI.PoolMenus:Ascenseur()
     MenuAscenseur:IsVisible(function(Items)
@@ -50,8 +54,11 @@ Citizen.CreateThread(function()
                 end
                 if distancevestiaire <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1) 
+                    if not open then
+                        ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1)
+                    end
                     if IsControlJustPressed(1, 51) then
+                        open = true
                         RageUI.Visible(MenuAscenseur, not RageUI.Visible(MenuAscenseur))
                     end
                 end
@@ -65,8 +72,11 @@ Citizen.CreateThread(function()
                 end
                 if distancevestiaire <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1) 
+                    if not open then
+                        ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1)
+                    end
                     if IsControlJustPressed(1, 51) then
+                        open = true
                         RageUI.Visible(MenuAscenseur, not RageUI.Visible(MenuAscenseur))
                     end
                 end
@@ -80,8 +90,11 @@ Citizen.CreateThread(function()
                 end
                 if distancevestiaire <= 1.0 then
                     wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1) 
+                    if not open then
+                        ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1)
+                    end
                     if IsControlJustPressed(1, 51) then
+                        open = true
                         RageUI.Visible(MenuAscenseur, not RageUI.Visible(MenuAscenseur))
                     end
                 end
