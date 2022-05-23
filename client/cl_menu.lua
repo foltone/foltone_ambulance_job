@@ -230,7 +230,9 @@ function RageUI.PoolMenus:F6Ambulance()
 end
 
 Keys.Register("F6", "F6", "Test", function()
-    RageUI.Visible(MenuF6Ambulance, not RageUI.Visible(MenuF6Ambulance))
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
+        RageUI.Visible(MenuF6Ambulance, not RageUI.Visible(MenuF6Ambulance))
+    end
 end)
 
 RegisterNetEvent('assistance:setBlip')
