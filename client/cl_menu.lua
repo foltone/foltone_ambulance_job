@@ -180,7 +180,7 @@ function RageUI.PoolMenus:F6Ambulance()
                                 montant = result
                                 result = nil
                                 if player ~= -1 and distance <= 3.0 then
-                                    TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', ('Police'), montant)
+                                    TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_ambulance', ('Ambulance'), montant)
                                     TriggerEvent('esx:showAdvancedNotification', 'Fl~g~ee~s~ca ~g~Bank', 'Facture envoyée : ', 'Vous avez envoyé une facture d\'un montant de : ~g~'..montant.. '$ ~s~pour cette raison : ~b~' ..raison.. '', 'CHAR_BANK_FLEECA', 9)
                                 else
                                     ESX.ShowNotification("~r~Probleme~s~: Aucuns joueurs proche")
