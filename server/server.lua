@@ -216,6 +216,20 @@ AddEventHandler('foltone:quitteleservice', function()
 	sendToDiscordWithSpecialURL("Name", "Fin de service : ", xPlayer.getName().." à quitter son service")
 end)
 
+-- revive player
+
+RegisterServerEvent('esx_ambulancejob:revive')
+AddEventHandler('esx_ambulancejob:revive', function(target)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local xTarget = ESX.GetPlayerFromId(target)
+
+    if xPlayer.job.name == 'ambulance' then
+        TriggerClientEvent('esx_ambulancejob:revive', target)
+    else
+        print(('esx_ambulancejob: %s attempted to revive!'):format(xPlayer.identifier))
+    end
+end)
+
 -- demande d'assistance
 
 RegisterServerEvent('assistance')
